@@ -1,0 +1,200 @@
+* {
+    box-sizing: border-box;
+    transition: all 0.2s;
+    font-family: "Roboto";
+}
+
+body {
+    background-color: antiquewhite;
+}
+
+table, tr, td {
+    border-collapse: collapse;
+}
+
+a {
+    text-decoration: none;
+}
+
+.standard-table {
+    margin: 30px 0;
+}
+
+.form-group {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.form-group input {
+    text-align: right;
+    width: 200px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.form-group select {
+    width: 100px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.form-group textarea {
+    padding: 5px;
+    margin: 10px;
+
+}
+
+caption {
+    margin: 30px 0;
+    font-size: 40px;
+}
+
+td {
+    padding: 10px;
+    min-width: 100px;
+    max-width: 300px;
+}
+
+th {
+    color: #FFD700;
+    background-color: black;
+    padding: 20px 0;
+}
+
+th a {
+    color: #FFD700;
+}
+
+.checked::after {
+    content: " \f0d7 ";
+    font-family: "FontAwesome";
+    color: #FFD700;
+}
+
+th:hover, .mygtukas:hover, .mazas:hover {
+    background-color: #444;
+}
+
+tr {
+    border-bottom: 1px dotted grey;
+}
+
+tr:hover {
+    background-color: #D2B48C;
+}
+
+.centered {
+    text-align: center;
+}
+
+td img {
+    max-width: 200px;
+}
+
+td a {
+    color: grey;
+    font-style: italic;
+}
+
+.img_one {
+    width: 400px;
+}
+
+.mygtukas {
+    background-color: black;
+    width: 200px;
+    color: #FFD700;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.mazas {
+    background-color: black;
+    border: 1px solid #FFD700;
+    width: 150px;
+    color: #FFD700;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 5px;
+    margin: 3px;
+}
+
+.fakeimage {
+    font-size: 120px;
+    text-align: center;
+    color: #dedede;
+}
+
+section, .container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.mygtuku-laikiklis {
+    display: flex;
+    flex-direction: column;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.pagination a.active {
+    background-color: black;
+    color: #FFD700;
+}
+
+.pagination a:hover {
+    background-color: #D2B48C;
+}
+
+.desineje {
+    float: right;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.comments-block {
+    border: 1px dotted grey;
+    padding: 25px;
+    margin: 25px 0;
+}
+
+.comments-block:hover {
+    background-color: #D2B48C;
+}
+
+.readercomment {
+    font-size: 0.9em;
+    color: grey;
+}
+
+.screens {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.one-movie-heading {
+    text-align: center;
+    background-color: black;
+    color: #FFD700;
+    padding: 15px;
+}
+
+.comment-time {
+    color: grey;
+    font-size: 0.9em;
+    margin-left: 30px;
+}
