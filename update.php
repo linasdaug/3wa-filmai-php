@@ -12,8 +12,28 @@ $image = $_POST['image'];
 $video = $_POST['video'];
 $genreId = $_POST['genre'];
 
+$actors = $_POST['actors'];
 
-echo $genre;
+$pdo2 = connectToDb();
+
+
+for ($i = 0; $i < sizeOf($actors); $i++) {
+
+$sql2 =
+
+'INSERT INTO
+moviedetails (actorId, movieId)
+VALUES ("'.$actors[$i].'", "'.$id.'")';
+
+
+$query2 = $pdo2->prepare($sql2);
+$query2->execute();
+
+}
+
+
+
+
 
 $pdo = connectToDb();
 

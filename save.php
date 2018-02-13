@@ -9,38 +9,16 @@ $length = $_POST['length'];
 $rating = $_POST['rating'];
 $image = $_POST['image'];
 $video = $_POST['video'];
-
-
-//failas
-//
-// var_dump($_FILES["image"]);
-// die();
-//
-// $target_dir = "img/";
-// $target_file = $target_dir . basename($_FILES["image"]["name"]);
-// $uploadOk = 1;
-// $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-// if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-//         echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
-//     } else {
-//         echo "Sorry, there was an error uploading your file.";
-//     };
-// $image = $_FILES["image"]["name"];
-
-
-
-
-//failo pabaiga
-
+$genreId = $_POST['genre'];
 
 $pdo = connectToDb();
 
-$sql = 'INSERT INTO movies (title, description, year, length, rating, image, video) VALUES ("'.$title.'", "'.$description.'", "'.$year.'", "'.$length.'", "'.$rating.'", "'.$image.'", "'.$video.'")';
+$sql = 'INSERT INTO movies (title, description, year, length, rating, image, video, genreId) VALUES ("'.$title.'", "'.$description.'", "'.$year.'", "'.$length.'", "'.$rating.'", "'.$image.'", "'.$video.'", "'.$genreId.'")';
 
 
 
-$query1 = $pdo->prepare($sql);
-$query1->execute();
+$query = $pdo->prepare($sql);
+$query->execute();
 
 
 header("Refresh:1; url = index.php");

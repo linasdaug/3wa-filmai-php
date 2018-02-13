@@ -8,12 +8,91 @@ body {
     background-color: antiquewhite;
 }
 
+.headerbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D2B48C;
+}
+
+.promo {
+    width: 30%;
+}
+
+.promo h1 {
+    font-style: italic;
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.logo h2 {
+    font-size: 120px;
+    text-align: center;
+    margin: 0;
+    cursor: pointer;
+}
+
+.logo h2 a {
+    color: grey;
+}
+
+.searchbox {
+    text-align: right;
+    position: relative;
+    margin-right: 20px;
+}
+
+.search-results-list {
+    position: absolute;
+    right: 20px;
+    top: 95px;
+    width: 200px;
+}
+
+.search-results-list-actors {
+    position: absolute;
+    right: 20px;
+    top: 135px;
+    width: 200px;
+}
+
+
+.search_results_list_item {
+    background-color: white;
+    padding: 3px;
+    width: 200px;
+}
+
+.search_results_list_item a {
+    color: grey;
+    background-color: white;
+    width: 200px;
+    padding-right: 10px;
+}
+
+.search_results_list_item a:hover {
+    color: #FFD700;
+    background-color: black;
+}
+
+
 table, tr, td {
     border-collapse: collapse;
 }
 
 a {
     text-decoration: none;
+}
+
+li {
+    list-style-type: none;
+}
+
+.td-genre {
+    font-size: 10px;
+    color: brown;
+    text-align: center;
 }
 
 .standard-table {
@@ -41,12 +120,6 @@ a {
 .form-group textarea {
     padding: 5px;
     margin: 10px;
-
-}
-
-caption {
-    margin: 30px 0;
-    font-size: 40px;
 }
 
 td {
@@ -126,6 +199,13 @@ td a {
     color: #dedede;
 }
 
+.fakeimage-one_movie {
+    font-size: 200px;
+    color: #dedede;
+    text-align: center;
+}
+
+
 section, .container {
     width: 80%;
     margin: 0 auto;
@@ -181,7 +261,7 @@ section, .container {
 .screens {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
+    align-items: center;
     flex-wrap: wrap;
     justify-content: space-around;
 }
@@ -197,4 +277,10 @@ section, .container {
     color: grey;
     font-size: 0.9em;
     margin-left: 30px;
+}
+
+.votes {
+    font-size: 0.8em;
+    color: grey;
+    font-style: italic;
 }

@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>CRUD</title>
-    <link rel="stylesheet" href="crud.css">
 
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-</head>
+
+
+    <?php include 'header.php' ?>
+
 <body>
     <div class="container">
 
@@ -18,10 +14,12 @@
         $year = $one_movie['year'];
         $rating = $one_movie['rating'];
         $video = $one_movie['video'];
+        $votes = $one_movie['numOfVotes'];
 
+        $actors = $one_movie_actors;
 
         if ($image == null) {
-            $img = "<div class='fakeimage'><i class='far fa-images'></i></div>";
+            $img = "<div class='fakeimage-one_movie'><i class='far fa-images'></i></div>";
             } else {
             $img = "<img class='img_one' src='img/".$image."'>";
         }
@@ -30,23 +28,47 @@
                 $str=$video;
                 $str=str_replace('watch?v=', 'embed/', $str);
                 } else {
-                    $str="";
+                    $str=null;
                 }
         ?>
 
-        <a class="mygtukas" href="index.php">Grįžti</a>
+
 
 
         <h1 class="one-movie-heading"> <?= $title ?> </h1>
         <div class="screens">
             <p><?= $img ?></p>
-            <iframe width="400" height="240" src="<?= $str ?>?controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+            <?php  if (strpos($video, 'youtube') == false): ?>
+                    <div class='fakeimage-one_movie'><i class='far fa-images'></i></div>
+            <?php     else:   ?>
+                    <iframe width="400" height="240" src="<?= $str ?>?controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            <?php    endif  ?>
+
+
         </div>
-        <p><?= $description ?></p><br>
+        <p><?= $description ?></p>
+        <?php
+            $str_actors = 'Vaidina:';
+            foreach ($actors as $actor) {
+                $str_actors = $str_actors.' <a href=actor.php?aid='.$actor["actorId"].'>'.$actor['FirstName'].' '.$actor['LastName'].'</a>,';
+            }
+            $str_actors = substr($str_actors, 0, -1).'.';
+         ?>
+
+         <p><?= $str_actors ?></p>
+
         <p>Metai: <?= $year ?></p>
-        <p>Reitingas: <?= $rating ?></p>
+        <p>Reitingas: <?= number_format($rating, 1, '.', '') ?></p><p class='votes'> (balsavo: <?= $votes ?>) </p>
         <br>
 
+
+
+        <form class="" action="voting.php?v_id=<?=$one_movie['id']?>&rating=<?= $rating ?>&votesCount=<?=$votes?>"method="post">
+            <label for="vote">Jūsų reitingas: </label>
+            <input type="number" name="vote" value="<?= number_format($rating, 1, '.', '') ?>" step="1" min="1" max="10"> </input>
+            <button type="submit" name="button">Balsuoti</button>
+        </form>
 
 
         <h4><em>Žiūrovų komentarai</em></h4><br>

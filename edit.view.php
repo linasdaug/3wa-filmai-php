@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>CRUD</title>
-    <link rel="stylesheet" href="crud.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-</head>
-<body>
+<?php include 'header.php'; ?>
 
 
 
 
 <?php if (isset($_GET['upd_id'])) { ?>
-<form action="update.php?upd_id=<?=$_GET['upd_id']?>" method="post" enctype="multipart/form-data">
+<form action="update.php?upd_id=<?=$_GET['upd_id']?>" method="post">
 <?php } else { ?>
-<form action="save.php" method="post" enctype="multipart/form-data">
+<form action="save.php" method="post">
 <?php };?>
 
 
@@ -28,14 +20,20 @@
         $query->execute();
         $edit_movie = $query->fetch(PDO::FETCH_ASSOC);
 
-
+    };
         $pdo2 = connectToDb();
         $sql2 = 'SELECT * FROM genres';
         $query2 = $pdo2->prepare($sql2);
         $query2->execute();
         $genres = $query2->fetchAll(PDO::FETCH_ASSOC);
 
-    }
+        $pdo3 = connectToDb();
+        $sql3 = 'SELECT * FROM actors';
+        $query3 = $pdo3->prepare($sql3);
+        $query3->execute();
+        $actors = $query3->fetchAll(PDO::FETCH_ASSOC);
+
+
  ?>
 
 
@@ -68,7 +66,7 @@
 
         <br>
         <label for="rating">Reitingas</label><br>
-        <input type="number" name="rating" value="<?=$edit_movie['rating']?>">
+        <p style="margin-left: 20px"><?= number_format($edit_movie['rating'], 1, '.', '')?></p>
         <br>
         <label for="image">Stop kadras</label><br>
         <input type="text" name="image" id="kadras" value="<?=$edit_movie['image']?>">
@@ -83,6 +81,13 @@
                 <option value="<?= $genre['genreId'] ?>"
                     <?php if ($genre['genreId'] == $edit_movie['genreId']) {echo " selected";}  ?>
                     ><?= $genre['genre'] ?></option>
+            <?php endforeach; ?>
+        </select><br>
+
+        <label for="actors">Aktoriai</label><br>
+        <select class="" name="actors[]" multiple>
+            <?php foreach ($actors as $actor): ?>
+                <option value="<?= $actor['actorId'] ?>"><?= $actor['FirstName'], ' ', $actor['LastName'] ?></option>
             <?php endforeach; ?>
         </select>
 

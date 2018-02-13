@@ -26,7 +26,7 @@ switch ($orderIndex) {
         $orderby = 'length';
         break;
     case 4:
-        $orderby = 'rating';
+        $orderby = 'rating DESC';
         break;
 }
 
@@ -55,10 +55,32 @@ if (isset($_GET['page'])){
 $query = $pdo->prepare
 (
     'SELECT * FROM movies ORDER BY '.$orderby.' LIMIT 5 OFFSET '.$from
-    
+
 );
 $query->execute();
 $movies = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$query3 = $pdo->prepare
+(
+    'SELECT movies.id, actors.actorId, actors.LastName, actors.FirstName FROM movies INNER JOIN moviedetails ON movies.id = moviedetails.movieId INNER JOIN actors ON actors.actorId = moviedetails.actorId'
+
+);
+$query3->execute();
+$actors = $query3->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+
+$pdo2 = connectToDb();
+$query2 = $pdo->prepare
+(
+    'SELECT * FROM genres'
+
+);
+$query2->execute();
+$genres = $query2->fetchAll(PDO::FETCH_ASSOC);
+
+
 
 
 include 'index.view.php';

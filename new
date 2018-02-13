@@ -1,0 +1,10 @@
+
+<!--
+            <?php
+                foreach ($actors as $actor) {
+                    $str = $str, ' ', $actor['FirstName'], ' ', $actor['lastName'], ',';
+                }
+                $str = substr($str, 0, -1), '.';
+             ?> -->
+
+        <!-- <p>Vaidina:<?= $str ?></p> -->

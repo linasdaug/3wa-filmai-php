@@ -1,5 +1,11 @@
 <?php
 
+
+error_reporting(E_ALL | E_STRICT);
+ini_set('display_errors', 'On');
+
+
+
 if (isset($_GET['one_id'])) {
     $id = $_GET['one_id'];
 } else {
@@ -23,9 +29,15 @@ $sql2 = 'SELECT * FROM comments WHERE movieId = '.$id;
 
 $query2 = $pdo->prepare($sql2);
 $query2->execute();
-$one_movie_comments = $query2->fetchall(PDO::FETCH_ASSOC);
+$one_movie_comments = $query2->fetchAll(PDO::FETCH_ASSOC);
 
 
+$pdo3 = connectToDb();
+$sql3 = 'SELECT actors.FirstName, actors.LastName, actors.actorId FROM actors INNER JOIN moviedetails ON actors.actorId = moviedetails.actorId WHERE moviedetails.movieId = '.$id;
+
+$query3 = $pdo3->prepare($sql3);
+$query3->execute();
+$one_movie_actors = $query3->fetchall(PDO::FETCH_ASSOC);
 
 
 include 'one_movie.view.php';

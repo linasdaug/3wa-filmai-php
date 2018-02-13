@@ -1,37 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <title>CRUD</title>
-    <link rel="stylesheet" href="crud.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-</head>
-<body>
+    <?php include 'header.php'; ?>
+
     <section>
 
 
         <table class="standard-table">
-            <caption>Filmai</caption>
+
             <thead>
                 <tr>
-                    <!-- <th class="centered">id</th> -->
+
                     <th <?php if ($orderIndex == 1){echo "class='checked'";} ?> ><a href="index.php?sort_id=1">Pavadinimas</a></th>
                     <th class="centered<?php if ($orderIndex == 2){echo ' checked';}?>"><a href="index.php?sort_id=2">Metai</a></th>
                     <th class="centered<?php if ($orderIndex == 3){echo ' checked';}?>"><a href="index.php?sort_id=3">Trukmė, min</a></th>
                     <th>Aprašymas</th>
                     <th class="centered<?php if ($orderIndex == 4){echo ' checked';}?>"><a href="index.php?sort_id=4">Reitingas</a></th>
                     <th class="centered">Stop kadras</th>
-                    <!-- <th class="centered">Video</th> -->
+                    <th class="centered">Aktoriai</th>
                     <th><a class="mygtukas" href="create.php">Pridėti naują</a><th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach($movies as $movie): ?>
                     <tr>
+                        <a href="one_movie.php?one_id=<?=$movie['id']?>">
+                        <td><a href="one_movie.php?one_id=<?=$movie['id']?>"><strong><?= $movie['title'] ?></strong></a>
 
-                        <td><strong><?= $movie['title'] ?></strong></td>
+                            <?php
+                            $gen = "";
+                            foreach ($genres as $genre) {
+                                if ($movie['genreId'] == $genre['genreId']) {
+                                    $gen = $genre['genre'];
+                                }
+                            }
+                            ?>
+                            <br><span class='td-genre'><?= $gen ?></span></td>
+
+
                         <td class="centered"><?=  $movie['year']?></td>
                         <td class="centered"><?= $movie['length'] ?></td>
                         <?php
@@ -52,7 +55,7 @@
                          ?>
 
                         <td><?= $description ?>  </td>
-                        <td class="centered"><?= $movie['rating'] ?></td>
+                        <td class="centered"><?= number_format($movie['rating'], 1, '.', '') ?></td>
 
                     <?php
                         if ($movie['image'] == null) {
@@ -64,14 +67,22 @@
 
                         <td><?= $img ?></td>
 
+                        <td>
+                            <?php
+                                foreach ($actors as $actor) {
+                                    if ($actor["id"] == $movie['id']) {
+                                        echo "<a href=actor.php?aid=".$actor['actorId'].">".$actor['FirstName']." ".$actor['LastName']."</a></br>";
+                                    }
+                                }
+                             ?>
+                         </td>
 
-                        <!-- <td><iframe width="200" height="120" src="<?= $str ?>?controls=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></td> -->
                         <td class="mygtuku-laikiklis">
                             <a class="mazas" href="delete.php?del_id=<?=$movie['id']?> ">Ištrinti</a>
                             <a class="mazas" href="edit.view.php?upd_id=<?=$movie['id']?> ">Atnaujinti</a>
                             <a class="mazas" href="one_movie.php?one_id=<?=$movie['id']?> ">Komentuoti</a>
                         </td>
-
+                      </a>
                     </tr>
                 <?php endforeach ?>
 
